@@ -16,5 +16,5 @@ export interface IResponseFaker {
      *
      * provides the ResponseFake to be used by the RequestInterceptor to fake the response of the Fake
      */
-    getResponseFake(request: Request): RespondOptions;
+    getResponseFake(request: Request): RespondOptions | Promise<RespondOptions>;
 }

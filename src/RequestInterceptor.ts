@@ -43,7 +43,7 @@ export class RequestInterceptor {
         let responseFaker: undefined | IResponseFaker = this.getMatchingFaker(interceptedRequest);
 
         if (typeof responseFaker !== 'undefined') {
-            await interceptedRequest.respond(responseFaker.getResponseFake(interceptedRequest));
+            await interceptedRequest.respond(await responseFaker.getResponseFake(interceptedRequest));
 
             return;
         }

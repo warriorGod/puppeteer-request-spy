@@ -10,6 +10,22 @@ import {CustomFaker} from '../common/CustomFaker';
 import {serverSettings} from '../common/ServerSettings';
 import {TestDouble} from '../common/TestDouble';
 import {getLoggerFake} from '../common/testDoubleFactories';
+import {serverDouble} from '../common/ServerDouble';
+
+before(async () => {
+    await browserLauncher.initialize(
+        {
+            headless: true,
+            ignoreHTTPSErrors: true,
+        }
+    );
+    await serverDouble.start();
+});
+
+after(async () => {
+    await browserLauncher.closeBrowser();
+    serverDouble.stop();
+});
 
 describe('puppeteer-request-spy: integration', function (): void {
     // noinspection TsLint
